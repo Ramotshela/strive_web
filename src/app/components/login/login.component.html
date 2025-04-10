@@ -1,0 +1,47 @@
+<form
+  action=""
+  class="card text-center position-absolute top-50 start-50 translate-middle p-4 shadow col-6"
+  [formGroup]="loginFormGroup"
+  (ngSubmit)="login()"
+>
+  <div class="row col-12 d-flex flex-column align-items-center">
+    <div class="username">
+      <input
+        type="text"
+        class="form-control mb-3"
+        placeholder="Username"
+        formControlName="username"
+      />
+      @if (loginFormGroup.controls['username'].touched) {
+      @if(loginFormGroup.controls['username'].errors?.['required']){
+      <span class="text-danger">username required</span>
+      } }
+    </div>
+
+    <div class="password">
+      <input
+        type="password"
+        class="form-control mb-3"
+        placeholder="Password"
+        formControlName="password"
+      />
+      @if(loginFormGroup.controls['password'].touched){
+      @if(loginFormGroup.controls['password'].errors?.['required']
+       ){
+      <span class="text-danger"
+        >password required </span
+      >
+      }
+    @if(loginFormGroup.controls['password'].errors?.['minlength']) {
+      <span class="text-danger">must have min length of 4</span>
+    }}
+      <button
+        type="submit"
+        [disabled]="!loginFormGroup.valid"
+        class="btn btn-primary w-100"
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</form>

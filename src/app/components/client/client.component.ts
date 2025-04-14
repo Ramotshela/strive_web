@@ -3,23 +3,28 @@ import { Client } from '../../model/class/client';
 import { FormsModule } from '@angular/forms';
 import { ClientService } from '../../services/client/client.service';
 import { UpperCasePipe } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-client',
-  imports: [FormsModule,UpperCasePipe],
+  imports: [FormsModule, UpperCasePipe,RouterModule],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
 })
 export class ClientComponent implements OnInit {
+  ToClientForm() {
+    this.route.navigate(['client/client-form']);
+  }
   clientService = inject(ClientService);
+  route = inject(Router);
   ngOnInit(): void {
     this.loadClients();
   }
   clientObj: Client = new Client();
-  clientList: Client[] = [];
+  clientList: any[] = [];
   loadClients() {
     this.clientService.GetAllClients().subscribe((data) => {
-      this.clientList = data.data;
+      this.clientList = data;
     });
   }
   OnSaveClient() {
@@ -34,7 +39,7 @@ export class ClientComponent implements OnInit {
     });
   }
   OnReset() {
-    this.clientObj=new Client()
+    this.clientObj = new Client();
   }
   OnEdit(id: number) {
     this.clientService.GetClientById(id).subscribe((data) => {

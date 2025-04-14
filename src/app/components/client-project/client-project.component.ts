@@ -13,7 +13,8 @@ import { IApiResponse } from '../../model/Interface/role';
 import { ClientProject } from '../../model/Interface/clientProject';
 import { Client } from '../../model/class/client';
 import { CanComponentDeactivate } from '../../model/CanComponentDeactivate';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -23,6 +24,11 @@ import { Observable } from 'rxjs';
   styleUrl: './client-project.component.scss',
 })
 export class ClientProjectComponent implements OnInit, CanComponentDeactivate {
+
+  route=inject(Router)
+  ToClientProjectForm() {
+    this.route.navigate(['client-project/client-form']);
+  }
   hasUnsavedChanges = false;
   canDeactivate(): boolean {
     return !this.hasUnsavedChanges || confirm('Discard changes?');
@@ -64,8 +70,7 @@ export class ClientProjectComponent implements OnInit, CanComponentDeactivate {
     this.ClientProjectForm.valueChanges.subscribe(() => {
       this.hasUnsavedChanges = true;
     });
-
-}
+  }
   OnDelete(id: number) {
     console.log(id);
 

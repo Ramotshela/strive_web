@@ -4,6 +4,7 @@ import { Client } from '../../model/class/client';
 import { environment } from '../../../environments/environment.development';
 import { IApiResponse } from '../../model/Interface/role';
 import { ClientProject } from '../../model/Interface/clientProject';
+import { API_Endpoint_Clients } from '../../Shared/Constants/Constants';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import { ClientProject } from '../../model/Interface/clientProject';
 export class ClientService {
   constructor(private readonly http: HttpClient) {}
   GetAllClients() {
-    return this.http.get<IApiResponse>(environment.API_URL + 'GetAllClients');
+    return this.http.get<any>(API_Endpoint_Clients.GetAllClient);
   }
   PostUpdatedClient(clientList: Client) {
     return this.http.post<IApiResponse>(

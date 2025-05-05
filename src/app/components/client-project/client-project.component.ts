@@ -14,8 +14,8 @@ import { ClientProject } from '../../model/Interface/clientProject';
 import { Client } from '../../model/class/client';
 import { CanComponentDeactivate } from '../../model/CanComponentDeactivate';
 import { Router } from '@angular/router';
-
-
+import { MatDialog} from '@angular/material';
+import { PaymentComponent } from '../payment/payment.component';
 
 @Component({
   selector: 'app-client-project',
@@ -24,8 +24,8 @@ import { Router } from '@angular/router';
   styleUrl: './client-project.component.scss',
 })
 export class ClientProjectComponent implements OnInit, CanComponentDeactivate {
-
-  route=inject(Router)
+  route = inject(Router);
+  constructor(private dialog: MatDialog) {}
   ToClientProjectForm() {
     this.route.navigate(['client-project/client-form']);
   }
@@ -112,6 +112,11 @@ export class ClientProjectComponent implements OnInit, CanComponentDeactivate {
       this.employeeDetails = res.data;
 
       console.log('data', this.employeeDetails);
+    });
+  }
+  payment() {
+    this.dialog.open(PaymentComponent, {
+      width: '250px',
     });
   }
 }

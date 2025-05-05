@@ -1,34 +1,32 @@
-
-<div class="row">
-
+<div class="row my-3">
   <div class="col-12 text-center">
-    <div class="btn-group">
+    <div class="btn-group shadow-sm">
       <button
         type="button"
         (click)="onChange('Roles')"
         class="btn"
-        [ngClass]="currentComponent == 'Roles' ? 'btn-success' : 'btn-primary'"
+        [ngClass]="currentComponent === 'Roles' ? 'btn-success' : 'btn-outline-primary'"
       >
-        Roles
+        <i class="bi bi-person-badge me-1"></i> Roles
       </button>
+
       <button
         type="button"
         (click)="onChange('Designation')"
         class="btn"
-        [ngClass]="
-          currentComponent == 'Designation' ? 'btn-success' : 'btn-primary'
-        "
+        [ngClass]="currentComponent === 'Designation' ? 'btn-success' : 'btn-outline-primary'"
       >
-        Designation
+        <i class="bi bi-person-vcard me-1"></i> Designation
       </button>
     </div>
   </div>
 </div>
+
 <div class="row">
-  <div class="col-12" *ngIf="currentComponent == 'Roles'">
+  <div class="col-12" *ngIf="currentComponent === 'Roles'">
     <app-roles></app-roles>
   </div>
-  <div class="col-12" *ngIf="currentComponent == 'Designation'">
+  <div class="col-12" *ngIf="currentComponent === 'Designation'">
     <app-designation></app-designation>
   </div>
 </div>

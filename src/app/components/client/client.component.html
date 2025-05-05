@@ -1,60 +1,73 @@
-<div class="row">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-header bg-success">Client List</div>
+<div class="container-fluid mt-4">
+  <div class="card shadow-lg border-0">
+    <div
+      class="card-header bg-success text-white d-flex justify-content-between align-items-center"
+    >
+      <h5 class="mb-0">Client List</h5>
+      <button
+        (click)="ToClientForm()"
+        class="btn btn-light text-success fw-bold shadow-sm"
+      >
+        <i class="bi bi-person-plus-fill me-1"></i> Add Client
+      </button>
+    </div>
 
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Sr No</th>
-                  <th>Person Name</th>
-                  <th>Company Name</th>
-                  <th>Address</th>
-                  <th>Contact No</th>
-                  <th>City</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for(item of clientList;track $index){
-                <tr>
-                  <td>{{ $index + 1 }}</td>
-                  <td>{{ item.name | uppercase}}</td>
-                  <td>{{ item.companyName }}</td>
-                  <td>{{ item.address }}</td>
-                  <td>{{ item.contactNo }}</td>
-                  <td>{{ item.city }}</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      (click)="OnEdit(item.clientId)"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-danger"
-                      (click)="OnDelete(item.clientId)"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-                }
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div>
-        <button (click)="ToClientForm()" routerLinkActive="router-link-active"  class="btn btn-primary col-1">Add Client</button>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+          <thead class="table-success text-center">
+            <tr>
+              <th>#</th>
+              <th>Person Name</th>
+              <th>Company Name</th>
+              <th>Address</th>
+              <th>Contact No</th>
+              <th>City</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of clientList;track $index){
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ item.name | uppercase }}</td>
+              <td>{{ item.companyName }}</td>
+              <td>{{ item.address }}</td>
+              <td>{{ item.contactNo }}</td>
+              <td>{{ item.city }}</td>
+              <td>
+               <div class="d-flex">
+  <button
+    type="button"
+    class="btn btn-primary btn-sm me-1 d-flex align-items-center gap-1"
+    (click)="OnEdit(item.clientId)"
+    title="Edit client details"
+  >
+    <i class="bi bi-pencil-square"></i> Edit
+  </button>
+
+  <button
+    type="button"
+    class="btn btn-danger btn-sm d-flex align-items-center gap-1"
+    (click)="OnDelete(item.clientProjectId)"
+    title="Delete this project"
+  >
+    <i class="bi bi-trash"></i> Delete
+  </button>
+</div>
+
+              </td>
+            </tr>
+            } @if(clientList.length === 0){
+            <tr>
+              <td colspan="7" class="text-center text-muted">
+                No clients found.
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-
 </div>
-

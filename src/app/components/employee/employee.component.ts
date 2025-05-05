@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { EmployeeService } from '../../services/Employee/employee.service';
-import { UpperCasePipe } from '@angular/common';
+import { DatePipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-employee',
-  imports: [UpperCasePipe],
+  imports: [UpperCasePipe,DatePipe],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.scss',
 })

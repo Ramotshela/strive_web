@@ -1,0 +1,152 @@
+<div class="col-6 col-md-6 col-lg-4">
+  <div class="card shadow-lg">
+    <div class="card-header bg-success text-white">
+      <h4>New Client</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="ClientProjectForm">
+        <div class="mb-3">
+          <label for="projectName" class="form-label">Project Name</label>
+
+          <input
+            type="text"
+            id="projectName"
+            formControlName="projectName"
+            class="form-control form-control-lg"
+            placeholder="Enter project name"
+            required
+          />
+          <div class="text-danger">
+            @if(ClientProjectForm.controls['projectName'].touched){
+            @if(ClientProjectForm.controls['projectName'].errors?.['required']){
+            <span>required</span>
+            }
+            @if(ClientProjectForm.controls['projectName'].errors?.['minlength']){
+            <span>min length is 4</span>
+            } }
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input
+              type="date"
+              formControlName="startDate"
+              class="form-control form-control-lg"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="expectedEndDate" class="form-label"
+              >Expected End Date</label
+            >
+            <input
+              type="date"
+              formControlName="expectedEndDate"
+              class="form-control form-control-lg"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="leadByEmpId" class="form-label">Assigned Employee</label>
+          <select
+            formControlName="leadByEmpId"
+            class="form-select form-select-lg"
+          >
+            <option value="">Select Employee</option>
+            @for(item of employeeDetails;track item.empId){
+            <option [value]="item.empId">
+              {{ item.empName }}
+            </option>
+
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="completedDate" class="form-label">Completed Date</label>
+          <input
+            type="date"
+            formControlName="completedDate"
+            class="form-control form-control-lg"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="contactPerson" class="form-label">Contact Name</label>
+          <input
+            type="text"
+            formControlName="contactPerson"
+            class="form-control form-control-lg"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="contactPersonContactNo" class="form-label"
+            >Contact No</label
+          >
+          <input
+            type="number"
+            formControlName="contactPersonContactNo"
+            class="form-control form-control-lg"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="projectDetails" class="form-label">Project Details</label>
+          <textarea
+            formControlName="projectDetails"
+            class="form-control form-control-lg"
+            rows="3"
+            placeholder="Provide project details"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="contactPersonEmailId" class="form-label"
+            >Employee Email</label
+          >
+          <input
+            type="email"
+            formControlName="contactPersonEmailId"
+            class="form-control form-control-lg"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="clientId" class="form-label">Client Name</label>
+          <select formControlName="clientId" class="form-select form-select-lg">
+            <option value="">Select Client</option>
+            @for(item of clientList; track $index){
+            <option [value]="item.clientId">
+              {{ item.contactPersonName }}
+            </option>
+            }
+          </select>
+        </div>
+
+        <div class="row pt-3">
+          <div class="col-12 col-md-6 text-center">
+            <button
+              class="btn btn-success btn-lg w-100"
+              [disabled]="!ClientProjectForm.valid"
+              (click)="OnSaveClient()"
+            >
+              Save
+            </button>
+          </div>
+          <div class="col-12 col-md-6 text-center mt-3 mt-md-0">
+            <button
+              class="btn btn-outline-secondary btn-lg w-100"
+              (click)="OnReset()"
+            >
+              Reset
+            </button>
+            
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

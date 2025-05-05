@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <form [formGroup]="paymentForm">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Payment Details</h5>
+      </div>
+      <div class="card-body">
+        <div class="row gy-3">
+          <div class="col-md-6">
+            <label for="paymentDate" class="form-label">Payment Date</label>
+            <input type="date" formControlName="paymentDate" class="form-control" id="paymentDate" />
+          </div>
+
+          <div class="col-md-6">
+            <label for="paymentMode" class="form-label">Payment Mode</label>
+            <select formControlName="paymentMode" class="form-select" id="paymentMode">
+              <option value="">Select Mode</option>
+              <option value="CASH">Cash</option>
+              <option value="CARD">Card</option>
+              <option value="BANK_TRANSFER">Bank Transfer</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" formControlName="amount" class="form-control" id="amount" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer text-end">
+        <button type="button" class="btn btn-success me-2" (click)="onSave()" [disabled]="!paymentForm.valid">
+          Save
+        </button>
+        <button type="button" class="btn btn-outline-secondary" (click)="onReset()">Reset</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -25,8 +25,8 @@ export class ClientService {
     return this.http.get<IApiResponse>(environment.API_URL + '/GetAllEmployee');
   }
   DeleteClientById(clientId: number) {
-    return this.http.delete<IApiResponse>(
-      environment.API_URL + 'DeleteClientByClientId?clientId=' + clientId
+    return this.http.delete(
+      API_Endpoint_Clients.DeleteClient(clientId)
     );
   }
   DeleteClientProjectById(id: number) {
@@ -34,9 +34,10 @@ export class ClientService {
       environment.API_URL + '/DeleteProjectByProjectId?projectId='+id
     );
   }
+
   GetClientById(clientId: number) {
     return this.http.get<IApiResponse>(
-      environment.API_URL + 'GetClientByClientId?clientId=' + clientId
+      API_Endpoint_Clients.GetClientById(clientId)
     );
   }
   GetAllClientProject() {

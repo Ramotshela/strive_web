@@ -1,69 +1,77 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-success shadow-sm">
   <div class="container-fluid">
-    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+    <a class="navbar-brand fw-bold text-white" routerLink="/">YourLogo</a>
+
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#mynavbar"
+      aria-controls="mynavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="mynavbar">
       @if(auth.getLogin()){
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/master" routerLinkActive="active"
-            >master</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/employee" routerLinkActive="active"
-            >Employee</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/client" routerLinkActive="active"
-            >Client</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/client-project"
-            routerLinkActive="active"
-            >Client Project</a
-          >
-        </li>
-      </ul>
-      <button type="button" class="btn btn-primary" (click)="auth.logout()">
-        <a class="nav-link" routerLink="" routerLinkActive="active">LogOut</a>
-      </button>
-      <form class="d-flex" formControl="">
-        <input class="form-control me-2" type="text" placeholder="Search" />
-        <button class="btn btn-primary" type="button">Search</button>
-      </form>
-      }@else{
-      <ul>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active"
-            >login</a
-          >
-        </li>
-      </ul>
+      <ng-container>
+        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/master" routerLinkActive="active"
+              >Master</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/employee" routerLinkActive="active"
+              >Employee</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client" routerLinkActive="active"
+              >Client</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/client-project"
+              routerLinkActive="active"
+              >Client Project</a
+            >
+          </li>
+        </ul>
 
-      }
+        <form class="d-flex me-3">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-light" type="button">Search</button>
+        </form>
+
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="auth.logout()"
+        >
+          <i class="bi bi-box-arrow-right me-1"></i> Logout
+        </button>
+      </ng-container>
+      } @else {<ng-template #guestLinks>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active"
+              >Login</a
+            >
+          </li>
+        </ul> </ng-template
+      >}
     </div>
   </div>
 </nav>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <router-outlet />

@@ -1,57 +1,63 @@
-<div class="row">
-  <div class="col-12">
-    <div class="card">
-      <div
-        class="card-header bg-success d-flex justify-content-between align-items-center text-white"
+<div class="container-fluid mt-4">
+  <div class="card shadow-lg border-0">
+    <div
+      class="card-header bg-success text-white d-flex justify-content-between align-items-center"
+    >
+      <h5 class="mb-0">Client Projects</h5>
+      <button
+        (click)="ToClientProjectForm()"
+        class="btn btn-light text-success fw-bold shadow-sm"
       >
-        <h5 class="mb-0">Client List</h5>
-        <button (click)="ToClientProjectForm()" class="btn btn-secondary">
-          Add Project
-        </button>
-      </div>
+        <i class="bi bi-plus-circle me-1"></i> Add Project
+      </button>
+    </div>
 
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Sr No</th>
-                  <th>Project Name</th>
-                  <th>Person Name</th>
-                  <th>Contact No</th>
-                  <th>start date</th>
-                  <th>end date</th>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+          <thead class="table-success text-center">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Project Name</th>
+              <th scope="col">Client Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of clientProjectList();track $index){
+            <tr>
+              <td class="text-center">{{ $index + 1 }}</td>
+              <td>{{ item.projectName }}</td>
+              <td>{{ item.clientName }}</td>
+              <td>{{ item.empEmailId }}</td>
+              <td>{{ item.startDate | date : "mediumDate" }}</td>
+              <td>{{ item.expectedEndDate | date : "mediumDate" }}</td>
+              <td class="text-center"></td>
 
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for(item of clientProjectList();track $index){
-                <tr>
-                  <td>{{ $index + 1 }}</td>
-                  <td>{{ item.projectName }}</td>
-                  <td>{{ item.clientName }}</td>
-                  <td>{{ item.empEmailId }}</td>
-                  <td>{{ item.expectedEndDate | date }}</td>
-                  <td>{{ item.startDate | date }}</td>
-
-                  <td>
-                    <button
-                      type="button"
-                      (click)="OnDelete(item.clientProjectId)"
-                      class="btn btn-danger"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-                }
-              </tbody>
-            </table>
-          </div>
-        </div>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm d-flex align-items-center gap-1"
+                  (click)="OnDelete(item.clientProjectId)"
+                  title="Delete this project"
+                >
+                  <i class="bi bi-trash"></i> Delete
+                </button>
+              </td>
+            </tr>
+            }
+            <tr *ngIf="clientProjectList().length === 0">
+              <td colspan="7" class="text-center text-muted">
+                No projects available.
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+  <button (click)="payment()">pay</button>
 </div>

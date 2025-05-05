@@ -48,11 +48,15 @@ export class ClientComponent implements OnInit {
   }
   OnDelete(id: number) {
     this.clientService.DeleteClientById(id).subscribe((res) => {
-      if (res.result) {
-        alert('deleted');
+try {
+ alert('deleted');
         this.loadClients();
         this.clientObj = new Client();
-      }
+} catch (error) {
+console.error(error)
+}
+
+
     });
   }
 }
